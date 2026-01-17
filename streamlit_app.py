@@ -867,7 +867,7 @@ st.markdown("""
     <p style='margin-top: 1rem;'>
         <a href='https://github.com/Het415' target='_blank'>GitHub</a> •
         <a href='https://www.linkedin.com/in/het-prajapati6210/' target='_blank'>LinkedIn</a> •
-        <a href='mailto:your.email@example.com'>Contact</a>
+        <a href='mailto:prajapati.hets@northeastern.edu'>Contact</a>
     </p>
 </div>
 """, unsafe_allow_html=True)
