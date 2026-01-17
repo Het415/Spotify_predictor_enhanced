@@ -866,7 +866,7 @@ st.markdown("""
     Cross-Validation, Temporal Validation, and Business Impact Analysis</p>
     <p style='margin-top: 1rem;'>
         <a href='https://github.com/Het415' target='_blank'>GitHub</a> •
-        <a href='https://linkedin.com/in/your-profile' target='_blank'>LinkedIn</a> •
+        <a href='https://www.linkedin.com/in/het-prajapati6210/' target='_blank'>LinkedIn</a> •
         <a href='mailto:your.email@example.com'>Contact</a>
     </p>
 </div>
