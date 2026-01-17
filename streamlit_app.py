@@ -4,7 +4,15 @@ SPOTIFY BREAKOUT PREDICTOR - INTERACTIVE DASHBOARD
 A comprehensive single-page Streamlit app showcasing graduate-level ML enhancements
 Author: Het
 """
+# Add at the very top, before other imports
+import subprocess
+import sys
 
+try:
+    import plotly
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly"])
+    import plotly
 import streamlit as st
 import pandas as pd
 import numpy as np
