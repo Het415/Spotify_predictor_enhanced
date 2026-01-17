@@ -380,16 +380,33 @@ st.markdown('<p class="sub-header">📈 Cross-Validation & Statistical Rigor</p>
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
-    st.markdown("""
-    <div class="metric-card">
-    <h3 style='color: #1DB954; margin-bottom: 1rem;'>5-Fold CV Results</h3>
-    <p><strong>Accuracy:</strong> 0.972 ± 0.004</p>
-    <p><strong>Precision:</strong> 0.921 ± 0.021</p>
-    <p><strong>Recall:</strong> 0.940 ± 0.008</p>
-    <p><strong>F1-Score:</strong> 0.930 ± 0.010</p>
-    <p><strong>ROC-AUC:</strong> 0.995 ± 0.001</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("### 5-Fold CV Results")
+    
+    st.metric(
+        label="Accuracy",
+        value="0.972",
+        delta="± 0.004"
+    )
+    st.metric(
+        label="Precision", 
+        value="0.921",
+        delta="± 0.021"
+    )
+    st.metric(
+        label="Recall",
+        value="0.940", 
+        delta="± 0.008"
+    )
+    st.metric(
+        label="F1-Score",
+        value="0.930",
+        delta="± 0.010"
+    )
+    st.metric(
+        label="ROC-AUC",
+        value="0.995",
+        delta="± 0.001"
+    )
     
     st.info("""
     ✅ **Exceptional Consistency**
