@@ -4,15 +4,7 @@ SPOTIFY BREAKOUT PREDICTOR - INTERACTIVE DASHBOARD
 A comprehensive single-page Streamlit app showcasing graduate-level ML enhancements
 Author: Het
 """
-# Add at the very top, before other imports
-import subprocess
-import sys
 
-try:
-    import plotly
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly"])
-    import plotly
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -57,10 +49,16 @@ st.markdown("""
     }
     .insight-box {
         background-color: #e8f5e9;
-        padding: 1rem;
+        padding: 1.5rem;
         border-radius: 0.5rem;
         border-left: 4px solid #4CAF50;
         margin: 1rem 0;
+        color: #000000 !important;
+        font-size: 1rem !important;
+    }
+    .insight-box p, .insight-box strong, .insight-box ul, .insight-box li {
+        color: #000000 !important;
+        font-size: 1rem !important;
     }
     .stTabs [data-baseweb="tab-list"] {
         gap: 2rem;
@@ -236,18 +234,19 @@ st.markdown('<p class="sub-header">🔬 Model Comparison & Selection</p>', unsaf
 col1, col2 = st.columns([1, 2])
 
 with col1:
-    st.markdown("""
-    <div class="insight-box">
-    <strong>🏆 Key Finding:</strong><br>
+    st.info("""
+    🏆 **Key Finding:**
+    
     After comparing 6 different algorithms, ensemble tree-based methods 
     (XGBoost, Gradient Boosting, Random Forest) significantly outperformed 
     linear and neural network approaches.
-    <br><br>
-    <strong>Winner:</strong> XGBoost (0.9950 ROC-AUC)<br>
-    <strong>Selected:</strong> Random Forest (0.9941 ROC-AUC)<br>
-    <strong>Reason:</strong> Comparable performance with better interpretability
-    </div>
-    """, unsafe_allow_html=True)
+    
+    **Winner:** XGBoost (0.9950 ROC-AUC)
+    
+    **Selected:** Random Forest (0.9941 ROC-AUC)
+    
+    **Reason:** Comparable performance with better interpretability
+    """)
     
     st.markdown("#### 📋 Model Rankings")
     model_results = pd.DataFrame({
@@ -330,16 +329,18 @@ with col1:
     st.plotly_chart(fig, use_container_width=True)
 
 with col2:
-    st.markdown("""
-    <div class="insight-box">
-    <strong>🎯 Key Insights:</strong><br><br>
-    <strong>TikTok Dominates:</strong> 74.6% of all predictions driven by TikTok metrics<br><br>
-    <strong>Top 4 Features:</strong> Account for 80% of model decisions<br><br>
-    <strong>Social > Quality:</strong> Track Score only contributes 1.8%, showing viral potential 
-    matters more than inherent quality<br><br>
-    <strong>Cross-Platform Validation:</strong> Spotify playlist metrics add 11.4% confirmation
-    </div>
-    """, unsafe_allow_html=True)
+    st.success("""
+    🎯 **Key Insights:**
+    
+    **TikTok Dominates:** 74.6% of all predictions driven by TikTok metrics
+    
+    **Top 4 Features:** Account for 80% of model decisions
+    
+    **Social > Quality:** Track Score only contributes 1.8%, showing viral potential 
+    matters more than inherent quality
+    
+    **Cross-Platform Validation:** Spotify playlist metrics add 11.4% confirmation
+    """)
     
     # Cumulative importance
     feature_data_sorted = feature_data.sort_values('Importance', ascending=False)
@@ -390,14 +391,13 @@ with col1:
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""
-    <div class="insight-box" style="margin-top: 1rem;">
-    <strong>✅ Exceptional Consistency</strong><br>
+    st.info("""
+    ✅ **Exceptional Consistency**
+    
     Standard deviation of only 0.001 for ROC-AUC demonstrates 
     remarkable stability across folds. This proves the model is 
     robust and not overfitting.
-    </div>
-    """, unsafe_allow_html=True)
+    """)
 
 with col2:
     # Cross-validation visualization
@@ -455,20 +455,20 @@ st.markdown('<p class="sub-header">⏰ Temporal Validation: Production Readiness
 col1, col2 = st.columns([1, 1])
 
 with col1:
-    st.markdown("""
-    <div class="insight-box">
-    <strong>🚀 Production-Ready Performance</strong><br><br>
+    st.success("""
+    🚀 **Production-Ready Performance**
+    
     Temporal validation simulates real-world deployment by training on 
     songs released before October 2023 and testing on newer releases.
-    <br><br>
-    <strong>Results:</strong><br>
-    • Accuracy: 99.2% (vs 97.0% random split)<br>
-    • ROC-AUC: 0.998 (vs 0.994 random split)<br>
-    • Only 7 misclassifications out of 919 predictions<br><br>
-    <strong>Verdict:</strong> Model actually performs BETTER on future data, 
+    
+    **Results:**
+    - Accuracy: 99.2% (vs 97.0% random split)
+    - ROC-AUC: 0.998 (vs 0.994 random split)
+    - Only 7 misclassifications out of 919 predictions
+    
+    **Verdict:** Model actually performs BETTER on future data, 
     demonstrating exceptional generalization!
-    </div>
-    """, unsafe_allow_html=True)
+    """)
     
     # Performance comparison
     comparison_data = pd.DataFrame({
@@ -745,25 +745,17 @@ with col1:
     st.plotly_chart(success_fig, use_container_width=True)
 
 with col2:
-    st.markdown("""
-    <div class="insight-box" style="height: 350px; display: flex; flex-direction: column; justify-content: center;">
-    <h3 style='color: #1DB954; margin-bottom: 1rem;'>💡 Business Value Summary</h3>
-    <ul style='font-size: 1.1rem; line-height: 2;'>
-        <li><strong>ROI:</strong> {roi:.0f}% return on investment</li>
-        <li><strong>Revenue:</strong> ${revenue:,.0f} additional per campaign</li>
-        <li><strong>Success Rate:</strong> {multiplier:.1f}x more breakouts identified</li>
-        <li><strong>Risk Reduction:</strong> Near-zero wasted spending</li>
-        <li><strong>Payback:</strong> Model pays for itself after 1 breakout</li>
-    </ul>
-    <p style='margin-top: 1rem; font-style: italic; color: #666;'>
-    Adjust parameters in the sidebar to see different scenarios
-    </p>
-    </div>
-    """.format(
-        roi=model_roi,
-        revenue=revenue_increase,
-        multiplier=success_multiplier
-    ), unsafe_allow_html=True)
+    st.info(f"""
+    ### 💡 Business Value Summary
+    
+    - **ROI:** {model_roi:.0f}% return on investment
+    - **Revenue:** ${revenue_increase:,.0f} additional per campaign
+    - **Success Rate:** {success_multiplier:.1f}x more breakouts identified
+    - **Risk Reduction:** Near-zero wasted spending
+    - **Payback:** Model pays for itself after 1 breakout
+    
+    *Adjust parameters in the sidebar to see different scenarios*
+    """)
 
 # ============================================================================
 # SECTION 6: PREDICTIONS EXPLORER
@@ -866,8 +858,8 @@ st.markdown("""
     Cross-Validation, Temporal Validation, and Business Impact Analysis</p>
     <p style='margin-top: 1rem;'>
         <a href='https://github.com/Het415' target='_blank'>GitHub</a> •
-        <a href='https://www.linkedin.com/in/het-prajapati6210/' target='_blank'>LinkedIn</a> •
-        <a href='mailto:prajapati.hets@northeastern.edu'>Contact</a>
+        <a href='https://linkedin.com/in/your-profile' target='_blank'>LinkedIn</a> •
+        <a href='mailto:your.email@example.com'>Contact</a>
     </p>
 </div>
 """, unsafe_allow_html=True)
